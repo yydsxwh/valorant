@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #07090d;
+  --bg-elev: #10141c;
+  --bg-soft: #161b26;
+  --line: #232a38;
+  --ink: #eef2f7;
+  --muted: #93a0b5;
+  --faint: #6b778c;
+  --red: #ff4655;
+  --red-deep: #c81d30;
+  --gold: #e4b15a;
+  --cyan: #5ad7d0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elev: var(--bg-elev);
+  --color-soft: var(--bg-soft);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-red: var(--red);
+  --color-gold: var(--gold);
+  --color-cyan: var(--cyan);
+  --font-sans: var(--font-outfit), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100%;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 500px at 8% -10%, rgba(255, 70, 85, 0.16), transparent 50%),
+    radial-gradient(900px 420px at 100% 0%, rgba(90, 215, 208, 0.08), transparent 46%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px, 28px 28px;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.clip-card {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+
+.clip-btn {
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.panel {
+  background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+}
+
+.red-line {
+  background: linear-gradient(90deg, var(--red), transparent);
+  height: 2px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 0.5rem 0.75rem;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--red);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a3242;
+  border-radius: 99px;
+}
