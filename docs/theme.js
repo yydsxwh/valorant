@@ -67,7 +67,7 @@
   }
 
   async function boot() {
-    apply(FALLBACK, null, "清新天蓝");
+    apply(FALLBACK);
     var sources = ["/api/public/theme", "https://www.yydsxwh.com/api/public/theme"];
     for (var i = 0; i < sources.length; i++) {
       try {
