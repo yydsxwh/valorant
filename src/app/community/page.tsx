@@ -31,11 +31,11 @@ export default async function CommunityPage({
           <h1 className="text-3xl font-semibold">社区动态</h1>
           <p className="mt-2 text-muted">玩家刚传上来的教学和笔记，点开就能评、赞、藏、转。</p>
         </div>
-        <Link href="/submit" className="bg-red px-4 py-2 text-sm clip-btn">发布内容</Link>
+        <Link href="/submit" className="btn btn-primary text-sm">发布内容</Link>
       </div>
-      <div className="mt-6 flex gap-2">
+      <div className="mt-6 flex flex-wrap gap-2">
         {tabs.map((t) => (
-          <Link key={t.href} href={t.href} className={`px-3 py-1.5 text-sm ${t.on ? "bg-red" : "border border-line text-muted"}`}>
+          <Link key={t.href} href={t.href} className={`chip ${t.on ? "chip-on" : ""}`}>
             {t.label}
           </Link>
         ))}

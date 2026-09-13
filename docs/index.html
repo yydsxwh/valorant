@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>瞬懂｜无畏契约点位社区</title>
+    <meta name="description" content="玩家上传无畏契约点位教学视频与图文攻略，评论、点赞、收藏、分享。跟随主站一键装扮。" />
+    <link rel="icon" href="./icon.svg" />
+    <style>
+      :root {
+        --bg:#f5f9fc; --bg-deep:#e8f1f8; --ink:#0f172a; --muted:#5b6b7c;
+        --line:rgba(15,23,42,.1); --brand:#0ea5e9; --brand-strong:#0284c7;
+        --brand-soft:rgba(14,165,233,.12); --fire:#f43f5e; --fire-strong:#e11d48;
+        --fire-soft:rgba(244,63,94,.1); --accent:var(--fire); --card:rgba(255,255,255,.92);
+        --shadow:0 16px 40px rgba(15,23,42,.06); --surface-radius:28px; --surface-pad:1.5rem;
+        --site-bg-layers:radial-gradient(ellipse 90% 55% at 8% -8%, rgba(14,165,233,.22), transparent 58%), linear-gradient(180deg,#f7fbfe 0%,#f5f9fc 42%,#e4eef6 100%);
+        --fs-nav:16px; --fs-brand:18px; --fs-hero-title:40px; --fs-hero-sub:17px; --fs-section-title:24px;
+        --font-body:"PingFang SC","Noto Sans SC","Segoe UI","Microsoft YaHei",sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; color: var(--ink); font-family: var(--font-body); }
+      body { background: var(--site-bg-layers); }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea, select { font: inherit; color: inherit; }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+      header.top { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(22px); background: color-mix(in srgb, var(--card) 86%, white); border-bottom: 1px solid var(--line); }
+      header.top .row { display: flex; align-items: center; gap: 16px; height: 64px; }
+      .brand { display: flex; align-items: center; gap: 8px; }
+      .mark { width: 36px; height: 36px; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 900; border-radius: 999px; }
+      nav.links { display: flex; gap: 6px; flex-wrap: wrap; font-size: var(--fs-nav); }
+      nav.links a { padding: 6px 12px; color: var(--muted); border-radius: 999px; }
+      nav.links a.on, nav.links a:hover { color: var(--brand-strong); background: var(--brand-soft); }
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 1px solid transparent; border-radius: 999px; background: var(--brand); color: #fff; cursor: pointer; font-weight: 600; }
+      .btn.ghost, .btn-secondary { background: color-mix(in srgb, var(--card) 80%, white); border-color: var(--line); color: var(--ink); }
+      .surface, .panel { background: var(--card); border: 1px solid color-mix(in srgb, #fff 70%, var(--line)); border-radius: var(--surface-radius); box-shadow: var(--shadow); }
+      .grid { display: grid; gap: 16px; }
+      @media (min-width: 800px) { .grid.cards { grid-template-columns: repeat(3, 1fr); } .hero { grid-template-columns: 1.1fr .9fr; } }
+      h1 { font-size: var(--fs-hero-title); line-height: 1.15; margin: 12px 0 0; letter-spacing: -.02em; }
+      .muted { color: var(--muted); }
+      .faint { color: var(--muted); font-size: 12px; opacity: .85; }
+      .chip { border: 1px solid var(--line); padding: 6px 12px; font-size: 12px; background: transparent; cursor: pointer; color: var(--muted); border-radius: 999px; }
+      .chip.on { border-color: transparent; background: var(--brand-soft); color: var(--brand-strong); }
+      .card-cover { aspect-ratio: 16/9; position: relative; border-radius: var(--surface-radius) var(--surface-radius) 0 0; background: linear-gradient(135deg, var(--brand-soft), color-mix(in srgb, var(--brand) 28%, white)); }
+      .input { width: 100%; border: 1px solid var(--line); background: color-mix(in srgb, var(--card) 88%, white); padding: 10px 12px; border-radius: 14px; }
+      footer { margin-top: 64px; border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted); font-size: 12px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+      .pack { font-size: 11px; color: var(--brand-strong); background: var(--brand-soft); border-radius: 999px; padding: 4px 10px; }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap row">
+        <a class="brand" href="#/">
+          <span class="mark">瞬</span>
+          <span><strong style="font-size:var(--fs-brand)">瞬懂</strong><br /><small class="faint">点位社区</small></span>
+        </a>
+        <nav class="links" id="nav"></nav>
+        <span class="pack" id="theme-pack">装扮 · 同步中</span>
+        <span style="margin-left:auto" id="who"></span>
+      </div>
+    </header>
+    <main class="wrap" id="app" style="padding: 32px 16px 48px;"></main>
+    <footer class="wrap">跟随歪歪滴艾斯一键装扮。玩家社区作品，与拳头游戏 / 无畏契约官方无关联。体验账号 demo / demo123</footer>
+    <script src="./theme.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
