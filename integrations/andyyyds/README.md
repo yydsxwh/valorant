@@ -8,3 +8,4 @@
 
 - 产品中心：https://www.yydsxwh.com/products
 - 打开产品：https://www.yydsxwh.com/products/shundong/
+- 装扮：页面启动后读取主站 `/api/public/theme`，套用当前一键装扮的 CSS 变量

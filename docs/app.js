@@ -36,9 +36,9 @@ function route() {
 }
 
 function card(p) {
-  return `<article class="panel clip">
+  return `<article class="surface">
     <a href="#/posts/${p.id}">
-      <div class="card-cover" style="background:linear-gradient(135deg,#151820,#ff465555)"></div>
+      <div class="card-cover"></div>
       <div style="padding:16px">
         <div class="faint">${p.type === "video" ? "视频" : "图文"} · ${mapName(p.map)} · ${agentName(p.agent)}</div>
         <h3 style="margin:8px 0 0;font-size:16px">${esc(p.title)}</h3>
@@ -68,9 +68,9 @@ function render() {
   if (path === "/products") {
     app.innerHTML = `<h1 style="font-size:28px">产品</h1>
       <p class="muted">瞬懂已挂在主站产品中心，也可在这里直接打开。</p>
-      <article class="panel clip" style="max-width:36rem;margin-top:24px;padding:24px">
-        <div class="faint">单独上线 · 无畏契约点位社区</div>
-        <h2>瞬懂 SHUNDONG</h2>
+      <article class="surface" style="max-width:36rem;margin-top:24px;padding:24px">
+        <div class="faint">网页版 · 跟随主站一键装扮</div>
+        <h2>瞬懂</h2>
         <p class="muted">上传点位教学视频和图文攻略笔记，支持评论、点赞、收藏和分享。</p>
         <a class="btn" href="#/">打开瞬懂</a>
       </article>`;
@@ -79,15 +79,15 @@ function render() {
   if (path === "/" ) {
     app.innerHTML = `<section class="grid hero" style="align-items:center;gap:32px;margin-bottom:40px">
       <div>
-        <div style="color:var(--red);letter-spacing:.28em;font-size:12px">VALORANT LINEUP COMMUNITY</div>
+        <div style="color:var(--brand);font-size:14px;font-weight:600">软件产品 · 点位社区</div>
         <h1>找点位，不用再把视频拉来拉去。</h1>
-        <p class="muted">瞬懂是给国服玩家用的无畏契约社区：上传教学视频，写图文笔记，别人可以评论、点赞、收藏和一键分享给开黑队友。</p>
+        <p class="muted">瞬懂挂在歪歪滴艾斯产品中心：上传教学视频，写图文笔记，别人可以评论、点赞、收藏。配色和背景跟随主站一键装扮。</p>
         <div class="actions" style="margin-top:20px">
           <a class="btn" href="#/library">进入点位库</a>
           <a class="btn ghost" href="#/submit">我要投稿</a>
         </div>
       </div>
-      <div class="panel clip" style="padding:20px">
+      <div class="surface" style="padding:20px">
         <div class="muted" style="margin-bottom:8px">本周热门</div>
         ${[...state.posts].sort((a,b)=>b.likes-a.likes).slice(0,4).map((p,i)=>`<a href="#/posts/${p.id}" style="display:block;padding:8px 0">${String(i+1).padStart(2,"0")} ${esc(p.title)}</a>`).join("")}
       </div>
@@ -112,7 +112,7 @@ function render() {
   }
   if (path === "/maps") {
     app.innerHTML = `<h1 style="font-size:28px">按地图查点位</h1>
-      <div class="grid cards" style="margin-top:20px">${MAPS.map(([id,n]) => `<a class="panel clip" href="#/library?map=${id}" style="padding:20px"><h3>${n}</h3><p class="faint">${id}</p></a>`).join("")}</div>`;
+      <div class="grid cards" style="margin-top:20px">${MAPS.map(([id,n]) => `<a class="surface" href="#/library?map=${id}" style="padding:20px"><h3>${n}</h3><p class="faint">${id}</p></a>`).join("")}</div>`;
     return;
   }
   if (path.startsWith("/posts/")) {
@@ -122,7 +122,7 @@ function render() {
     p.views = (p.views || 0) + 1; save(state);
     const liked = !!state.liked[id];
     const faved = !!state.fav[id];
-    app.innerHTML = `<div class="panel clip" style="aspect-ratio:16/9;background:radial-gradient(circle at 30% 20%,#ff465533,#0b0f16 55%);margin-bottom:20px;display:grid;place-items:center" class="muted">互动演示 · ${esc(p.ability)}</div>
+    app.innerHTML = `<div class="surface" style="aspect-ratio:16/9;background:radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--brand) 28%, white), var(--bg-deep));margin-bottom:20px;display:grid;place-items:center;color:var(--muted)">互动演示 · ${esc(p.ability)}</div>
       <div class="faint">${p.type==="video"?"视频教学":"图文笔记"} · ${mapName(p.map)} · ${agentName(p.agent)} · ${p.side}${p.site}</div>
       <h1 style="font-size:32px">${esc(p.title)}</h1>
       <p class="muted">${esc(p.summary)}</p>
@@ -131,8 +131,8 @@ function render() {
         <button class="btn ${faved?"":"ghost"}" id="fav">收藏 ${p.favs}</button>
         <button class="btn ghost" id="share">分享</button>
       </div>
-      <article class="panel clip" style="padding:20px;white-space:pre-wrap">${esc(p.body)}</article>
-      <section class="panel clip" style="padding:20px;margin-top:20px">
+      <article class="surface" style="padding:20px;white-space:pre-wrap">${esc(p.body)}</article>
+      <section class="surface" style="padding:20px;margin-top:20px">
         <h3>评论 ${(p.comments||[]).length}</h3>
         <div id="clist">${(p.comments||[]).map((c)=>`<p><strong>${esc(c.user)}</strong> ${esc(c.body)}</p>`).join("") || "<p class='faint'>来写第一条心得</p>"}</div>
         <textarea id="cbody" class="input" rows="3" placeholder="说说这个点位好不好用…"></textarea>
@@ -165,7 +165,7 @@ function render() {
     return;
   }
   if (path === "/login") {
-    app.innerHTML = `<form class="panel clip" style="max-width:420px;margin:40px auto;padding:24px" id="lf">
+    app.innerHTML = `<form class="surface" style="max-width:420px;margin:40px auto;padding:24px" id="lf">
       <h1 style="font-size:28px">登录瞬懂</h1>
       <p class="muted">体验账号已填好：demo / demo123</p>
       <label class="muted">用户名</label><input class="input" name="u" value="demo" />
@@ -187,7 +187,7 @@ function render() {
   if (path === "/submit") {
     if (!state.user) { navigate("#/login"); return; }
     app.innerHTML = `<h1 style="font-size:28px">投稿点位</h1>
-      <form id="sf" class="panel clip" style="padding:20px;margin-top:16px">
+      <form id="sf" class="surface" style="padding:20px;margin-top:16px">
         <label class="muted">标题</label><input class="input" name="title" required placeholder="例如：亚海悬城 炼狱 A 门默认烟" />
         <label class="muted" style="display:block;margin-top:12px">摘要</label><input class="input" name="summary" required />
         <label class="muted" style="display:block;margin-top:12px">正文</label><textarea class="input" name="body" rows="5"></textarea>

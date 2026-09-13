@@ -15,8 +15,7 @@ export function FilterBar({ basePath }: { basePath: string }) {
     router.push(qs ? `${basePath}?${qs}` : basePath);
   }
 
-  const chip = (active: boolean) =>
-    `px-2.5 py-1 text-xs border ${active ? "border-red bg-red/15 text-ink" : "border-line text-muted hover:text-ink"}`;
+  const chip = (active: boolean) => `chip ${active ? "chip-on" : ""}`;
 
   return (
     <div className="space-y-3">
@@ -63,7 +62,7 @@ export function FilterBar({ basePath }: { basePath: string }) {
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-3">
-      <div className="w-10 shrink-0 pt-1 text-xs text-faint">{label}</div>
+      <div className="w-10 shrink-0 pt-1 text-xs text-muted">{label}</div>
       <div className="flex flex-wrap gap-1.5">{children}</div>
     </div>
   );

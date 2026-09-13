@@ -50,7 +50,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
                 <Avatar name={post.author.displayName} mark={post.author.avatar} />
                 <div>
                   <div className="text-sm font-medium">{post.author.displayName}</div>
-                  <div className="text-xs text-faint">{post.author.rank} · {formatTimeAgo(post.createdAt)} · {formatCount(post.viewCount + 1)} 播放</div>
+                  <div className="text-xs text-muted">{post.author.rank} · {formatTimeAgo(post.createdAt)} · {formatCount(post.viewCount + 1)} 播放</div>
                 </div>
               </Link>
               <ActionBar post={{ ...post, viewCount: post.viewCount + 1 }} />
@@ -60,25 +60,25 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
           {post.steps.length > 0 && (
             <div className="grid gap-3 md:grid-cols-3">
               {post.steps.map((step, i) => (
-                <div key={i} className="panel p-4 clip-card">
-                  <div className="text-xs text-red">0{i + 1} {step.kind === "stand" ? "站位" : step.kind === "aim" ? "准星" : step.kind === "land" ? "落点" : "笔记"}</div>
+                <div key={i} className="surface p-4">
+                  <div className="text-xs text-brand">0{i + 1} {step.kind === "stand" ? "站位" : step.kind === "aim" ? "准星" : step.kind === "land" ? "落点" : "笔记"}</div>
                   <h3 className="mt-1 font-medium">{step.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted">{step.body}</p>
-                  {step.tip && <p className="mt-3 text-xs text-gold">提示：{step.tip}</p>}
+                  {step.tip && <p className="mt-3 text-xs text-fire">提示：{step.tip}</p>}
                 </div>
               ))}
             </div>
           )}
 
           {post.body && (
-            <article className="panel p-5 clip-card whitespace-pre-wrap leading-7 text-[15px] text-ink/90">
+            <article className="surface whitespace-pre-wrap p-5 text-[15px] leading-7 text-ink/90">
               {post.body}
             </article>
           )}
 
           <div className="flex flex-wrap gap-2">
             {post.tags.map((t) => (
-              <span key={t} className="bg-soft px-2 py-1 text-xs text-muted">#{t}</span>
+              <span key={t} className="rounded-full bg-brand-soft px-2 py-1 text-xs text-muted">#{t}</span>
             ))}
           </div>
 
@@ -86,13 +86,13 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
         </div>
 
         <aside className="space-y-4">
-          <div className="panel p-4 clip-card">
+          <div className="surface p-4">
             <h3 className="mb-3 text-sm text-muted">相关推荐</h3>
             <div className="space-y-3">
               {related.map((p) => (
-                <Link key={p.id} href={`/posts/${p.id}`} className="block hover:bg-soft p-2">
+                <Link key={p.id} href={`/posts/${p.id}`} className="block rounded-2xl p-2 hover:bg-brand-soft">
                   <div className="text-sm">{p.title}</div>
-                  <div className="text-xs text-faint">{getMap(p.mapId)?.name} · {p.likeCount} 赞</div>
+                  <div className="text-xs text-muted">{getMap(p.mapId)?.name} · {p.likeCount} 赞</div>
                 </Link>
               ))}
             </div>

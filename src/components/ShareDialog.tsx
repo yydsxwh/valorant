@@ -38,7 +38,7 @@ export function ShareDialog({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={onClose}>
-      <div className="panel w-full max-w-md p-5 clip-card" onClick={(e) => e.stopPropagation()}>
+      <div className="surface w-full max-w-md p-5" onClick={(e) => e.stopPropagation()}>
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-medium">分享这条点位</h3>
           <button onClick={onClose}><X className="h-5 w-5 text-muted" /></button>
@@ -47,25 +47,25 @@ export function ShareDialog({
         <div className="grid gap-2">
           <button
             onClick={() => copy(url, "link")}
-            className="flex items-center justify-between border border-line px-3 py-3 text-left hover:bg-soft"
+            className="flex items-center justify-between rounded-2xl border border-line px-3 py-3 text-left hover:bg-brand-soft"
           >
-            <span className="inline-flex items-center gap-2"><LinkIcon className="h-4 w-4 text-cyan" />复制链接</span>
-            {copied === "link" ? <Check className="h-4 w-4 text-cyan" /> : <Copy className="h-4 w-4 text-faint" />}
+            <span className="inline-flex items-center gap-2"><LinkIcon className="h-4 w-4 text-brand" />复制链接</span>
+            {copied === "link" ? <Check className="h-4 w-4 text-brand" /> : <Copy className="h-4 w-4 text-muted" />}
           </button>
           <button
             onClick={() => copy(card, "card")}
-            className="flex items-center justify-between border border-line px-3 py-3 text-left hover:bg-soft"
+            className="flex items-center justify-between rounded-2xl border border-line px-3 py-3 text-left hover:bg-brand-soft"
           >
             <span className="inline-flex items-center gap-2"><ShareGlyph />复制分享卡片</span>
-            {copied === "card" ? <Check className="h-4 w-4 text-cyan" /> : <Copy className="h-4 w-4 text-faint" />}
+            {copied === "card" ? <Check className="h-4 w-4 text-brand" /> : <Copy className="h-4 w-4 text-muted" />}
           </button>
         </div>
-        <p className="mt-3 text-xs text-faint">发给开黑队友，或发到群里当补位速查。</p>
+        <p className="mt-3 text-xs text-muted">发给开黑队友，或发到群里当补位速查。</p>
       </div>
     </div>
   );
 }
 
 function ShareGlyph() {
-  return <span className="inline-flex h-4 w-4 items-center justify-center text-gold">✦</span>;
+  return <span className="inline-flex h-4 w-4 items-center justify-center text-fire">✦</span>;
 }

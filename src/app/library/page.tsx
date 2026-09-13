@@ -34,7 +34,7 @@ export default async function LibraryPage({
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="text-3xl font-semibold">点位教程库</h1>
       <p className="mt-2 text-muted">像翻库存一样筛地图、英雄和用途。当前 {total} 条。</p>
-      <div className="mt-6 panel p-4">
+      <div className="surface mt-6 p-4">
         <Suspense>
           <FilterBar basePath="/library" />
         </Suspense>

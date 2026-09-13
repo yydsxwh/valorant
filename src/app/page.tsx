@@ -18,16 +18,16 @@ export default async function Home() {
       <section className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:pt-16">
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <p className="text-xs tracking-[0.28em] text-red">VALORANT LINEUP COMMUNITY</p>
-            <h1 className="mt-3 max-w-xl text-4xl font-semibold leading-tight md:text-6xl">
+            <p className="text-sm font-medium text-brand">软件产品 · 点位社区</p>
+            <h1 className="brand-mark mt-3 max-w-xl leading-tight" style={{ fontSize: "var(--fs-hero-title)" }}>
               找点位，不用再把视频拉来拉去。
             </h1>
-            <p className="mt-4 max-w-lg text-muted">
-              瞬懂是给国服玩家用的无畏契约社区：上传教学视频，写图文笔记，别人可以评论、点赞、收藏和一键分享给开黑队友。
+            <p className="mt-4 max-w-lg text-muted" style={{ fontSize: "var(--fs-hero-sub)" }}>
+              瞬懂挂在歪歪滴艾斯产品中心：上传教学视频，写图文笔记，别人可以评论、点赞、收藏，并分享给开黑队友。配色和背景跟随主站一键装扮。
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/library" className="bg-red px-5 py-2.5 clip-btn">进入点位库</Link>
-              <Link href="/submit" className="border border-line px-5 py-2.5 text-muted clip-btn hover:text-ink">我要投稿</Link>
+              <Link href="/library" className="btn btn-primary">进入点位库</Link>
+              <Link href="/submit" className="btn btn-secondary">我要投稿</Link>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
               <Stat n={stats.posts} label="点位内容" />
@@ -36,18 +36,18 @@ export default async function Home() {
               <Stat n={stats.users} label="创作者" />
             </div>
           </div>
-          <div className="panel clip-card p-5">
+          <div className="surface p-5">
             <div className="mb-3 flex items-center justify-between text-sm text-muted">
               <span>本周热门</span>
-              <Link href="/community?sort=hot" className="text-red">全部</Link>
+              <Link href="/community?sort=hot" className="text-brand">全部</Link>
             </div>
             <div className="space-y-3">
               {hot.slice(0, 4).map((p, i) => (
-                <Link key={p.id} href={`/posts/${p.id}`} className="flex gap-3 hover:bg-soft p-2">
-                  <span className="w-6 text-gold">{String(i + 1).padStart(2, "0")}</span>
+                <Link key={p.id} href={`/posts/${p.id}`} className="flex gap-3 rounded-2xl p-2 hover:bg-brand-soft">
+                  <span className="w-6 text-brand-strong">{String(i + 1).padStart(2, "0")}</span>
                   <span className="min-w-0">
                     <span className="block truncate">{p.title}</span>
-                    <span className="text-xs text-faint">{p.likeCount} 赞 · {p.favoriteCount} 藏</span>
+                    <span className="text-xs text-muted">{p.likeCount} 赞 · {p.favoriteCount} 藏</span>
                   </span>
                 </Link>
               ))}
@@ -58,18 +58,18 @@ export default async function Home() {
 
       <section className="mx-auto max-w-6xl px-4">
         <div className="mb-4 flex items-end justify-between">
-          <h2 className="text-xl font-medium">按地图找</h2>
+          <h2 className="font-medium" style={{ fontSize: "var(--fs-section-title)" }}>按地图找</h2>
           <Link href="/maps" className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink">
             全部地图 <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5">
           {MAPS.slice(0, 10).map((m) => (
-            <Link key={m.id} href={`/maps/${m.id}`} className="panel clip-card overflow-hidden group">
-              <div className="h-16" style={{ background: `linear-gradient(135deg, ${m.accentSoft}, ${m.accent}66)` }} />
+            <Link key={m.id} href={`/maps/${m.id}`} className="surface group overflow-hidden">
+              <div className="h-16" style={{ background: `linear-gradient(135deg, ${m.accentSoft}, color-mix(in srgb, ${m.accent} 40%, white))` }} />
               <div className="p-3">
-                <div className="font-medium group-hover:text-red">{m.name}</div>
-                <div className="text-xs text-faint">{m.nameEn} · {m.sites.join("/")}</div>
+                <div className="font-medium group-hover:text-brand">{m.name}</div>
+                <div className="text-xs text-muted">{m.nameEn} · {m.sites.join("/")}</div>
               </div>
             </Link>
           ))}
@@ -77,35 +77,35 @@ export default async function Home() {
       </section>
 
       <section className="mx-auto mt-14 max-w-6xl px-4">
-        <SectionTitle href="/library?type=video" icon={<PlayCircle className="h-5 w-5 text-red" />} title="教学视频" />
+        <SectionTitle href="/library?type=video" icon={<PlayCircle className="h-5 w-5 text-brand" />} title="教学视频" />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {videos.map((p) => <PostCard key={p.id} post={p} compact />)}
         </div>
       </section>
 
       <section className="mx-auto mt-14 max-w-6xl px-4">
-        <SectionTitle href="/library?type=guide" icon={<BookOpen className="h-5 w-5 text-gold" />} title="图文攻略笔记" />
+        <SectionTitle href="/library?type=guide" icon={<BookOpen className="h-5 w-5 text-fire" />} title="图文攻略笔记" />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {guides.map((p) => <PostCard key={p.id} post={p} compact />)}
         </div>
       </section>
 
       <section className="mx-auto mt-14 max-w-6xl px-4">
-        <SectionTitle href="/community" icon={<Users className="h-5 w-5 text-cyan" />} title="社区最新" />
+        <SectionTitle href="/community" icon={<Users className="h-5 w-5 text-brand" />} title="社区最新" />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {latest.map((p) => <PostCard key={p.id} post={p} />)}
         </div>
       </section>
 
       <section className="mx-auto mt-14 max-w-6xl px-4 pb-8">
-        <div className="mb-4 flex items-center gap-2 text-xl font-medium">
-          <MapPinned className="h-5 w-5 text-red" /> 热门英雄
+        <div className="mb-4 flex items-center gap-2 font-medium" style={{ fontSize: "var(--fs-section-title)" }}>
+          <MapPinned className="h-5 w-5 text-brand" /> 热门英雄
         </div>
         <div className="flex flex-wrap gap-2">
           {AGENTS.filter((a) => a.id !== "universal").slice(0, 16).map((a) => (
-            <Link key={a.id} href={`/library?agent=${a.id}`} className="border border-line px-3 py-1.5 text-sm text-muted hover:text-ink" style={{ boxShadow: `inset 3px 0 0 ${a.color}` }}>
+            <Link key={a.id} href={`/library?agent=${a.id}`} className="chip hover:text-ink">
               {a.name}
-              <span className="ml-2 text-xs text-faint">{a.role}</span>
+              <span className="ml-2 text-xs opacity-70">{a.role}</span>
             </Link>
           ))}
         </div>
@@ -116,9 +116,9 @@ export default async function Home() {
 
 function Stat({ n, label }: { n: number; label: string }) {
   return (
-    <div className="border border-line bg-elev/60 px-3 py-3">
+    <div className="surface px-3 py-3">
       <div className="text-xl font-semibold">{n}</div>
-      <div className="text-xs text-faint">{label}</div>
+      <div className="text-xs text-muted">{label}</div>
     </div>
   );
 }
@@ -126,7 +126,7 @@ function Stat({ n, label }: { n: number; label: string }) {
 function SectionTitle({ href, icon, title }: { href: string; icon: React.ReactNode; title: string }) {
   return (
     <div className="mb-4 flex items-end justify-between">
-      <h2 className="inline-flex items-center gap-2 text-xl font-medium">{icon}{title}</h2>
+      <h2 className="inline-flex items-center gap-2 font-medium" style={{ fontSize: "var(--fs-section-title)" }}>{icon}{title}</h2>
       <Link href={href} className="text-sm text-muted hover:text-ink">更多</Link>
     </div>
   );
