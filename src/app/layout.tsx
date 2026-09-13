@@ -19,8 +19,8 @@ const noto = Noto_Sans_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: "瞬点｜无畏契约点位社区",
-    template: "%s｜瞬点",
+    default: "瞬懂｜无畏契约点位社区",
+    template: "%s｜瞬懂",
   },
   description: "玩家自由上传无畏契约点位教学视频与图文攻略笔记，支持评论、点赞、收藏和分享。",
   icons: { icon: "/icon.svg" },

@@ -1,4 +1,4 @@
-# 瞬点 SHUNSPOT
+# 瞬懂 SHUNDONG
 
 无畏契约点位社区：玩家可以上传教学视频和图文攻略笔记，并评论、点赞、收藏、分享。
 
@@ -12,6 +12,14 @@ npm run dev
 ```
 
 打开 [http://localhost:3000](http://localhost:3000)。
+
+产品中心：[https://www.yydsxwh.com/products](https://www.yydsxwh.com/products) → [打开瞬懂](https://www.yydsxwh.com/products/shundong/)
+
+发布到主站（与日事相同，需要 `~/.ssh/yyds_aliyun`）：
+
+```bash
+./scripts/deploy-shundong.sh
+```
 
 体验账号：`demo` / `demo123`
 

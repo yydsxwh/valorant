@@ -9,6 +9,7 @@ import { Avatar } from "./Avatar";
 
 const NAV = [
   { href: "/", label: "首页" },
+  { href: "/products", label: "产品" },
   { href: "/library", label: "点位库" },
   { href: "/maps", label: "地图" },
   { href: "/community", label: "社区" },
@@ -29,8 +30,8 @@ export function Header() {
             <span className="text-sm font-black tracking-tight">瞬</span>
           </span>
           <span className="leading-none">
-            <strong className="block text-[15px] tracking-[0.18em]">瞬点</strong>
-            <small className="text-[10px] text-faint tracking-[0.22em]">SHUNSPOT</small>
+            <strong className="block text-[15px] tracking-[0.18em]">瞬懂</strong>
+            <small className="text-[10px] text-faint tracking-[0.22em]">SHUNDONG</small>
           </span>
         </Link>
 

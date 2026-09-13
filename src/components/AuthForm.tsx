@@ -39,7 +39,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
 
   return (
     <form onSubmit={submit} className="panel mx-auto w-full max-w-md p-6 clip-card">
-      <h1 className="text-2xl font-semibold">{mode === "login" ? "登录瞬点" : "加入社区"}</h1>
+      <h1 className="text-2xl font-semibold">{mode === "login" ? "登录瞬懂" : "加入社区"}</h1>
       <p className="mt-1 text-sm text-muted">
         {mode === "login" ? "体验账号已填好：demo / demo123" : "注册后就能投稿、评论、收藏。"}
       </p>

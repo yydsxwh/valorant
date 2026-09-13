@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>瞬懂｜无畏契约点位社区</title>
+    <meta name="description" content="玩家上传无畏契约点位教学视频与图文攻略，评论、点赞、收藏、分享。" />
+    <link rel="icon" href="./icon.svg" />
+    <style>
+      :root { --bg:#07090d; --elev:#10141c; --soft:#161b26; --line:#232a38; --ink:#eef2f7; --muted:#93a0b5; --faint:#6b778c; --red:#ff4655; --gold:#e4b15a; --cyan:#5ad7d0; }
+      * { box-sizing: border-box; border-color: var(--line); }
+      html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Noto Sans SC", ui-sans-serif, system-ui, sans-serif; min-height: 100%; }
+      body { background-image: radial-gradient(1200px 500px at 8% -10%, rgba(255,70,85,.16), transparent 50%), linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px); background-size: auto, 28px 28px, 28px 28px; }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea, select { font: inherit; color: inherit; }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+      header.top { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: #07090dcc; border-bottom: 1px solid var(--line); }
+      header.top .row { display: flex; align-items: center; gap: 16px; height: 64px; }
+      .brand { display: flex; align-items: center; gap: 8px; }
+      .mark { width: 32px; height: 32px; background: var(--red); display: grid; place-items: center; font-weight: 900; clip-path: polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); }
+      nav.links { display: flex; gap: 8px; flex-wrap: wrap; }
+      nav.links a { padding: 6px 10px; color: var(--muted); font-size: 14px; }
+      nav.links a.on, nav.links a:hover { color: var(--ink); }
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; background: var(--red); border: 0; color: #fff; cursor: pointer; clip-path: polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); }
+      .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+      .panel { background: color-mix(in srgb, var(--elev) 88%, transparent); border: 1px solid var(--line); }
+      .clip { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+      .grid { display: grid; gap: 16px; }
+      @media (min-width: 800px) { .grid.cards { grid-template-columns: repeat(3, 1fr); } .hero { grid-template-columns: 1.1fr .9fr; } }
+      h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.15; margin: 12px 0 0; }
+      .muted { color: var(--muted); }
+      .faint { color: var(--faint); font-size: 12px; }
+      .chip { border: 1px solid var(--line); padding: 4px 8px; font-size: 12px; background: transparent; cursor: pointer; color: var(--muted); }
+      .chip.on { border-color: var(--red); background: #ff465526; color: var(--ink); }
+      .card-cover { aspect-ratio: 16/9; position: relative; }
+      .input { width: 100%; border: 1px solid var(--line); background: var(--bg); padding: 8px 12px; }
+      footer { margin-top: 64px; border-top: 1px solid var(--line); padding: 32px 0; color: var(--faint); font-size: 12px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap row">
+        <a class="brand" href="#/">
+          <span class="mark">瞬</span>
+          <span><strong>瞬懂</strong><br /><small class="faint">SHUNDONG</small></span>
+        </a>
+        <nav class="links" id="nav"></nav>
+        <span style="margin-left:auto" id="who"></span>
+      </div>
+    </header>
+    <main class="wrap" id="app" style="padding: 32px 16px 48px;"></main>
+    <footer class="wrap">玩家社区作品，与拳头游戏 / 无畏契约官方无关联。体验账号 demo / demo123</footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

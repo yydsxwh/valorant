@@ -15,7 +15,7 @@ export function ShareDialog({
 }) {
   const [copied, setCopied] = useState<"link" | "card" | "">("");
   const url = typeof window !== "undefined" ? `${window.location.origin}/posts/${post.id}` : `/posts/${post.id}`;
-  const card = `【瞬点】${post.title}\n${post.summary}\n${url}`;
+  const card = `【瞬懂】${post.title}\n${post.summary}\n${url}`;
 
   async function copy(text: string, channel: "link" | "card") {
     await navigator.clipboard.writeText(text);

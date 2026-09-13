@@ -23,7 +23,7 @@ export default async function Home() {
               找点位，不用再把视频拉来拉去。
             </h1>
             <p className="mt-4 max-w-lg text-muted">
-              瞬点是给国服玩家用的无畏契约社区：上传教学视频，写图文笔记，别人可以评论、点赞、收藏和一键分享给开黑队友。
+              瞬懂是给国服玩家用的无畏契约社区：上传教学视频，写图文笔记，别人可以评论、点赞、收藏和一键分享给开黑队友。
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/library" className="bg-red px-5 py-2.5 clip-btn">进入点位库</Link>

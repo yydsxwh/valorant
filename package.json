@@ -1,12 +1,12 @@
 {
-  "name": "shunspot",
+  "name": "shundong",
   "version": "0.1.0",
   "private": true,
   "description": "无畏契约点位社区：视频教学、图文笔记、评论点赞收藏分享",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -H 0.0.0.0 -p 3000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p 3000",
     "lint": "eslint"
   },
   "dependencies": {

@@ -8,7 +8,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center bg-red clip-btn text-sm font-black">瞬</span>
             <div>
-              <strong>瞬点</strong>
+              <strong>瞬懂</strong>
               <p className="text-sm text-muted">让每个点位都有人教，也有地方讨论。</p>
             </div>
           </div>
@@ -17,6 +17,7 @@ export function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap gap-4 text-sm text-muted">
+          <Link href="/products">产品</Link>
           <Link href="/library">点位教程库</Link>
           <Link href="/community">社区</Link>
           <Link href="/submit">投稿</Link>
