@@ -9,6 +9,7 @@ import { Avatar } from "./Avatar";
 
 const NAV = [
   { href: "/", label: "首页" },
+  { href: "/products", label: "产品" },
   { href: "/library", label: "点位库" },
   { href: "/maps", label: "地图" },
   { href: "/community", label: "社区" },

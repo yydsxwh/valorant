@@ -17,6 +17,7 @@ export function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap gap-4 text-sm text-muted">
+          <Link href="/products">产品</Link>
           <Link href="/library">点位教程库</Link>
           <Link href="/community">社区</Link>
           <Link href="/submit">投稿</Link>

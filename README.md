@@ -13,6 +13,10 @@ npm run dev
 
 打开 [http://localhost:3000](http://localhost:3000)。
 
+独立产品地址（可从软件产品页点开）：[https://yydsxwh.github.io/valorant/](https://yydsxwh.github.io/valorant/)
+
+接到歪歪滴艾斯「软件产品」的改法见 `integrations/andyyyds/`。
+
 体验账号：`demo` / `demo123`
 
 首次启动会自动写入 SQLite（`data/valspot.db`）并生成示例内容。

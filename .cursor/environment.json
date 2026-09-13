@@ -1,0 +1,10 @@
+{
+  "install": "npm install",
+  "start": "npm run start",
+  "ports": [
+    {
+      "name": "瞬点",
+      "port": 3000
+    }
+  ]
+}
