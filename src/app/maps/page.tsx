@@ -14,15 +14,15 @@ export default function MapsPage() {
         {MAPS.map((m) => {
           const { total } = listPosts({ mapId: m.id, limit: 1 });
           return (
-            <Link key={m.id} href={`/maps/${m.id}`} className="panel clip-card overflow-hidden group">
-              <div className="h-28" style={{ background: `linear-gradient(120deg, ${m.accentSoft}, ${m.accent}80)` }} />
+            <Link key={m.id} href={`/maps/${m.id}`} className="surface group overflow-hidden">
+              <div className="h-28" style={{ background: `linear-gradient(120deg, ${m.accentSoft}, color-mix(in srgb, ${m.accent} 40%, white))` }} />
               <div className="p-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-medium group-hover:text-red">{m.name}</h2>
-                  <span className="text-xs text-faint">{total} 条</span>
+                  <h2 className="text-lg font-medium group-hover:text-brand">{m.name}</h2>
+                  <span className="text-xs text-muted">{total} 条</span>
                 </div>
                 <p className="mt-1 text-sm text-muted">{m.blurb}</p>
-                <p className="mt-3 text-xs text-faint">{m.nameEn} · {m.sites.join(" / ")}</p>
+                <p className="mt-3 text-xs text-muted">{m.nameEn} · {m.sites.join(" / ")}</p>
               </div>
             </Link>
           );

@@ -1,31 +1,63 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #07090d;
-  --bg-elev: #10141c;
-  --bg-soft: #161b26;
-  --line: #232a38;
-  --ink: #eef2f7;
-  --muted: #93a0b5;
-  --faint: #6b778c;
-  --red: #ff4655;
-  --red-deep: #c81d30;
-  --gold: #e4b15a;
-  --cyan: #5ad7d0;
+  --bg: #f5f9fc;
+  --bg-deep: #e8f1f8;
+  --ink: #0f172a;
+  --muted: #5b6b7c;
+  --line: rgba(15, 23, 42, 0.1);
+  --brand: #0ea5e9;
+  --brand-strong: #0284c7;
+  --brand-soft: rgba(14, 165, 233, 0.12);
+  --fire: #f43f5e;
+  --fire-strong: #e11d48;
+  --fire-soft: rgba(244, 63, 94, 0.1);
+  --accent: var(--fire);
+  --accent-soft: var(--fire-soft);
+  --card: rgba(255, 255, 255, 0.92);
+  --shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  --site-bg-layers:
+    radial-gradient(ellipse 90% 55% at 8% -8%, rgba(14, 165, 233, 0.22), transparent 58%),
+    radial-gradient(ellipse 60% 42% at 92% 0%, rgba(56, 189, 248, 0.12), transparent 50%),
+    linear-gradient(180deg, #f7fbfe 0%, var(--bg) 42%, #e4eef6 100%);
+  --surface-radius: 28px;
+  --surface-pad: 1.5rem;
+  --control-h: 2.75rem;
+  --control-radius: 999px;
+  --glass-blur: 18px;
+  --glass-saturate: 1.45;
+  --glass-edge: rgba(255, 255, 255, 0.72);
+  --glass-sheen: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.62) 0%,
+    rgba(255, 255, 255, 0.16) 42%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
+  --font-body: "PingFang SC", "Noto Sans SC", "Segoe UI", "Microsoft YaHei", sans-serif;
+  --fs-nav: 16px;
+  --fs-brand: 18px;
+  --fs-hero-title: 40px;
+  --fs-hero-sub: 17px;
+  --fs-section-title: 24px;
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-elev: var(--bg-elev);
-  --color-soft: var(--bg-soft);
-  --color-line: var(--line);
+  --color-bg-deep: var(--bg-deep);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-faint: var(--faint);
-  --color-red: var(--red);
-  --color-gold: var(--gold);
-  --color-cyan: var(--cyan);
-  --font-sans: var(--font-outfit), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-fire: var(--fire);
+  --color-fire-strong: var(--fire-strong);
+  --color-fire-soft: var(--fire-soft);
+  --color-card: var(--card);
+  --color-elev: var(--card);
+  --color-soft: var(--brand-soft);
+  --color-faint: var(--muted);
+  --font-sans: var(--font-body);
 }
 
 * {
@@ -34,18 +66,15 @@
 
 html,
 body {
-  background: var(--bg);
-  color: var(--ink);
   min-height: 100%;
+  color: var(--ink);
 }
 
 body {
-  background-image:
-    radial-gradient(1200px 500px at 8% -10%, rgba(255, 70, 85, 0.16), transparent 50%),
-    radial-gradient(900px 420px at 100% 0%, rgba(90, 215, 208, 0.08), transparent 46%),
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: auto, auto, 28px 28px, 28px 28px;
+  margin: 0;
+  background: var(--site-bg-layers);
+  background-attachment: scroll;
+  font-family: var(--font-body);
 }
 
 a {
@@ -59,35 +88,92 @@ select {
   font: inherit;
 }
 
-.clip-card {
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+.surface {
+  background: var(--glass-sheen), var(--card);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--surface-radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
-.clip-btn {
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+.glass-bar {
+  background: var(--glass-sheen), color-mix(in srgb, var(--card) 86%, white);
+  border-color: var(--glass-edge);
+  backdrop-filter: blur(22px) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(22px) saturate(var(--glass-saturate));
 }
 
-.panel {
-  background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+.brand-mark {
+  letter-spacing: -0.02em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: var(--control-h);
+  padding: 0.65rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-strong);
+}
+
+.btn-secondary {
+  background: color-mix(in srgb, var(--card) 80%, white);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.7rem;
   border: 1px solid var(--line);
-  backdrop-filter: blur(16px);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 
-.red-line {
-  background: linear-gradient(90deg, var(--red), transparent);
-  height: 2px;
+.chip-on,
+.chip.on {
+  border-color: transparent;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
 }
 
 .input {
   width: 100%;
   border: 1px solid var(--line);
-  background: var(--bg);
-  padding: 0.5rem 0.75rem;
+  background: color-mix(in srgb, var(--card) 88%, white);
+  border-radius: 14px;
+  padding: 0.55rem 0.8rem;
   outline: none;
 }
 
 .input:focus {
-  border-color: var(--red);
+  border-color: var(--brand);
+}
+
+.panel {
+  background: var(--glass-sheen), var(--card);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--surface-radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 ::-webkit-scrollbar {
@@ -96,6 +182,6 @@ select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a3242;
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
   border-radius: 99px;
 }

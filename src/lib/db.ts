@@ -576,12 +576,12 @@ function seed() {
   const pass = hashPassword("demo123");
   const now = Date.now();
   const users = [
-    { id: "u_official", username: "shundian", email: "hello@shundian.app", name: "瞬点官方", avatar: "瞬", rank: "认证作者", bio: "无畏契约点位社区。欢迎投稿视频和图文。" },
-    { id: "u_smoke", username: "yanyan", email: "yan@shundian.app", name: "烟位研究员", avatar: "烟", rank: "不朽", bio: "只研究能进排位的烟。" },
-    { id: "u_retake", username: "huifang", email: "hf@shundian.app", name: "回防专家", avatar: "回", rank: "超凡", bio: "守不住就回，回得过来才叫会玩。" },
-    { id: "u_flash", username: "shan", email: "flash@shundian.app", name: "闪光手阿闪", avatar: "闪", rank: "神话", bio: "闪光不是为了自己爽，是为了队友能出。" },
-    { id: "u_coach", username: "coach", email: "coach@shundian.app", name: "新人教练阿木", avatar: "木", rank: "钻石", bio: "把难点位写成笔记，手残也能学会。" },
-    { id: "u_demo", username: "demo", email: "demo@shundian.app", name: "体验玩家", avatar: "体", rank: "黄金", bio: "官方体验账号，密码 demo123。" },
+    { id: "u_official", username: "shundong", email: "hello@shundong.app", name: "瞬懂官方", avatar: "瞬", rank: "认证作者", bio: "无畏契约点位社区。欢迎投稿视频和图文。" },
+    { id: "u_smoke", username: "yanyan", email: "yan@shundong.app", name: "烟位研究员", avatar: "烟", rank: "不朽", bio: "只研究能进排位的烟。" },
+    { id: "u_retake", username: "huifang", email: "hf@shundong.app", name: "回防专家", avatar: "回", rank: "超凡", bio: "守不住就回，回得过来才叫会玩。" },
+    { id: "u_flash", username: "shan", email: "flash@shundong.app", name: "闪光手阿闪", avatar: "闪", rank: "神话", bio: "闪光不是为了自己爽，是为了队友能出。" },
+    { id: "u_coach", username: "coach", email: "coach@shundong.app", name: "新人教练阿木", avatar: "木", rank: "钻石", bio: "把难点位写成笔记，手残也能学会。" },
+    { id: "u_demo", username: "demo", email: "demo@shundong.app", name: "体验玩家", avatar: "体", rank: "黄金", bio: "官方体验账号，密码 demo123。" },
   ];
   const insertUser = db.prepare(
     `INSERT INTO users (id, username, email, password_hash, display_name, bio, avatar, rank, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,

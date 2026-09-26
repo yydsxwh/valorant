@@ -42,28 +42,28 @@ export function ActionBar({ post }: { post: PostRecord }) {
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => toggle("like")}
-          className={`inline-flex items-center gap-1.5 border px-3 py-2 text-sm clip-btn ${liked ? "border-red bg-red/15 text-red" : "border-line text-muted hover:text-ink"}`}
+          className={`chip ${liked ? "chip-on" : ""}`}
         >
           <Heart className={`h-4 w-4 ${liked ? "fill-current" : ""}`} />
           点赞 {formatCount(likes)}
         </button>
         <button
           onClick={() => toggle("favorite")}
-          className={`inline-flex items-center gap-1.5 border px-3 py-2 text-sm clip-btn ${favorited ? "border-gold bg-gold/10 text-gold" : "border-line text-muted hover:text-ink"}`}
+          className={`chip ${favorited ? "chip-on" : ""}`}
         >
           <Bookmark className={`h-4 w-4 ${favorited ? "fill-current" : ""}`} />
           收藏 {formatCount(favs)}
         </button>
         <a
           href="#comments"
-          className="inline-flex items-center gap-1.5 border border-line px-3 py-2 text-sm text-muted clip-btn hover:text-ink"
+          className="chip hover:text-ink"
         >
           <MessageCircle className="h-4 w-4" />
           评论 {formatCount(post.commentCount)}
         </a>
         <button
           onClick={() => setShareOpen(true)}
-          className="inline-flex items-center gap-1.5 border border-line px-3 py-2 text-sm text-muted clip-btn hover:text-ink"
+          className="chip hover:text-ink"
         >
           <Share2 className="h-4 w-4" />
           分享 {formatCount(shares)}

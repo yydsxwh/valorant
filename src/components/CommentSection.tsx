@@ -46,14 +46,14 @@ export function CommentSection({
   }
 
   return (
-    <section id="comments" className="panel p-5 clip-card">
+    <section id="comments" className="surface p-5">
       <h3 className="mb-4 text-lg font-medium">评论 {countAll(comments)}</h3>
       {user ? (
         <div className="mb-6">
           {replyTo && (
             <div className="mb-2 text-xs text-muted">
               回复 @{replyTo.author.displayName}
-              <button className="ml-2 text-red" onClick={() => setReplyTo(null)}>取消</button>
+              <button className="ml-2 text-brand" onClick={() => setReplyTo(null)}>取消</button>
             </div>
           )}
           <textarea
@@ -61,24 +61,24 @@ export function CommentSection({
             onChange={(e) => setBody(e.target.value)}
             rows={3}
             placeholder="说说这个点位好不好用、哪里容易扔歪…"
-            className="w-full resize-none border border-line bg-bg px-3 py-2 text-sm outline-none focus:border-red"
+            className="input resize-none text-sm"
           />
           <div className="mt-2 flex justify-end">
-            <button onClick={submit} disabled={busy} className="bg-red px-4 py-1.5 text-sm clip-btn disabled:opacity-50">
+            <button onClick={submit} disabled={busy} className="btn btn-primary !min-h-9 text-sm disabled:opacity-50">
               发布
             </button>
           </div>
         </div>
       ) : (
         <p className="mb-6 text-sm text-muted">
-          <Link href={`/login?next=/posts/${postId}`} className="text-red">登录</Link> 后参与讨论
+          <Link href={`/login?next=/posts/${postId}`} className="text-brand">登录</Link> 后参与讨论
         </p>
       )}
       <div className="space-y-5">
         {comments.map((c) => (
           <CommentItem key={c.id} comment={c} onReply={setReplyTo} onLike={like} canInteract={!!user} />
         ))}
-        {comments.length === 0 && <p className="text-sm text-faint">还没有评论，来写第一条心得。</p>}
+        {comments.length === 0 && <p className="text-sm text-muted">还没有评论，来写第一条心得。</p>}
       </div>
     </section>
   );
@@ -104,13 +104,13 @@ function CommentItem({
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 text-sm">
             <Link href={`/u/${comment.author.id}`} className="font-medium">{comment.author.displayName}</Link>
-            <span className="text-xs text-faint">{comment.author.rank}</span>
-            <span className="text-xs text-faint">{formatTimeAgo(comment.createdAt)}</span>
+            <span className="text-xs text-muted">{comment.author.rank}</span>
+            <span className="text-xs text-muted">{formatTimeAgo(comment.createdAt)}</span>
           </div>
           <p className="mt-1 whitespace-pre-wrap text-sm leading-6">{comment.body}</p>
-          <div className="mt-2 flex gap-4 text-xs text-faint">
+          <div className="mt-2 flex gap-4 text-xs text-muted">
             <button
-              className={`inline-flex items-center gap-1 ${comment.liked ? "text-red" : ""}`}
+              className={`inline-flex items-center gap-1 ${comment.liked ? "text-fire" : ""}`}
               onClick={() => canInteract && onLike(comment.id)}
             >
               <Heart className={`h-3.5 w-3.5 ${comment.liked ? "fill-current" : ""}`} />

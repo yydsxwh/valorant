@@ -94,9 +94,9 @@ export function SubmitForm() {
 
   if (!user) {
     return (
-      <div className="panel p-8 text-center clip-card">
+      <div className="surface p-8 text-center">
         <p className="text-muted">投稿需要先登录。</p>
-        <button onClick={() => router.push("/login?next=/submit")} className="mt-4 bg-red px-4 py-2 clip-btn">去登录</button>
+        <button onClick={() => router.push("/login?next=/submit")} className="btn btn-primary mt-4">去登录</button>
       </div>
     );
   }
@@ -110,7 +110,7 @@ export function SubmitForm() {
               type="button"
               key={t}
               onClick={() => setType(t)}
-              className={`px-4 py-2 text-sm clip-btn ${type === t ? "bg-red" : "border border-line text-muted"}`}
+              className={`chip ${type === t ? "chip-on" : ""}`}
             >
               {t === "video" ? "视频教学" : "图文攻略笔记"}
             </button>
@@ -126,7 +126,7 @@ export function SubmitForm() {
           <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={6} placeholder="补充时机、配合、常见失误…" className="input resize-y" />
         </Field>
         {type === "video" && (
-          <div className="panel p-4 space-y-3">
+          <div className="surface space-y-3 p-4">
             <p className="text-sm text-muted">上传视频文件，或粘贴 B 站 / YouTube 链接。没有视频时会生成互动演示。</p>
             <input
               type="file"
@@ -136,8 +136,8 @@ export function SubmitForm() {
                 if (file) upload(file);
               }}
             />
-            {uploading && <p className="text-xs text-cyan">上传中…</p>}
-            {videoFileUrl && <p className="text-xs text-cyan">已上传 {videoFileUrl}</p>}
+            {uploading && <p className="text-xs text-brand">上传中…</p>}
+            {videoFileUrl && <p className="text-xs text-brand">已上传 {videoFileUrl}</p>}
             <input value={videoInput} onChange={(e) => setVideoInput(e.target.value)} placeholder="https://www.bilibili.com/video/BVxxxx 或 YouTube 链接" className="input" />
           </div>
         )}
@@ -146,7 +146,7 @@ export function SubmitForm() {
             <h3 className="text-sm text-muted">分步笔记</h3>
             <button
               type="button"
-              className="text-xs text-red"
+              className="text-xs text-brand"
               onClick={() => setSteps((s) => [...s, { title: "补充", body: "", kind: "note" }])}
             >
               加一步
@@ -163,7 +163,7 @@ export function SubmitForm() {
       </div>
 
       <aside className="space-y-4">
-        <div className="panel p-4 grid gap-3">
+        <div className="surface grid gap-3 p-4">
           <Select label="地图" value={mapId} onChange={setMapId} options={MAPS.map((m) => ({ value: m.id, label: m.name }))} />
           <Select label="英雄" value={agentId} onChange={setAgentId} options={AGENTS.map((a) => ({ value: a.id, label: `${a.name} · ${a.role}` }))} />
           <Select label="技能" value={ability} onChange={setAbility} options={[{ value: "", label: "选择技能" }, ...(agent?.abilities.map((a) => ({ value: a.name, label: a.name })) || [])]} />
@@ -175,14 +175,14 @@ export function SubmitForm() {
           <Select label="用途" value={purpose} onChange={setPurpose} options={PURPOSES.map((p) => ({ value: p.id, label: p.name }))} />
           <Select label="难度" value={difficulty} onChange={setDifficulty} options={DIFFICULTIES.map((d) => ({ value: d, label: d }))} />
         </div>
-        <div className="panel p-4">
+        <div className="surface p-4">
           <div className="mb-2 flex gap-2 text-xs">
-            <button type="button" onClick={() => setPin("start")} className={`px-2 py-1 ${pin === "start" ? "bg-cyan text-black" : "border border-line"}`}>标站位</button>
-            <button type="button" onClick={() => setPin("land")} className={`px-2 py-1 ${pin === "land" ? "bg-red" : "border border-line"}`}>标落点</button>
+            <button type="button" onClick={() => setPin("start")} className={`chip ${pin === "start" ? "chip-on" : ""}`}>标站位</button>
+            <button type="button" onClick={() => setPin("land")} className={`chip ${pin === "land" ? "chip-on" : ""}`}>标落点</button>
           </div>
           <button
             type="button"
-            className="relative aspect-video w-full overflow-hidden bg-[#0d121a]"
+            className="relative aspect-video w-full overflow-hidden rounded-2xl bg-bg-deep"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -191,13 +191,13 @@ export function SubmitForm() {
               else setLand({ x, y });
             }}
           >
-            <span className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan" style={{ left: `${start.x}%`, top: `${start.y}%` }} />
-            <span className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red" style={{ left: `${land.x}%`, top: `${land.y}%` }} />
-            <span className="absolute left-2 top-2 text-[11px] text-faint">点击小地图标注</span>
+            <span className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand" style={{ left: `${start.x}%`, top: `${start.y}%` }} />
+            <span className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-fire" style={{ left: `${land.x}%`, top: `${land.y}%` }} />
+            <span className="absolute left-2 top-2 text-[11px] text-muted">点击小地图标注</span>
           </button>
         </div>
-        {error && <p className="text-sm text-red">{error}</p>}
-        <button disabled={busy} className="w-full bg-red py-3 clip-btn disabled:opacity-50">
+        {error && <p className="text-sm text-fire">{error}</p>}
+        <button disabled={busy} className="btn btn-primary w-full disabled:opacity-50">
           {busy ? "发布中…" : "发布到社区"}
         </button>
       </aside>

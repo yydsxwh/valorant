@@ -25,7 +25,7 @@ export function ProfileView({
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <div className="panel flex flex-wrap items-center gap-5 p-6 clip-card">
+      <div className="surface flex flex-wrap items-center gap-5 p-6">
         <Avatar name={user.displayName} mark={user.avatar} size="lg" />
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl font-semibold">{user.displayName}</h1>
@@ -39,18 +39,18 @@ export function ProfileView({
               router.push("/");
               router.refresh();
             }}
-            className="border border-line px-3 py-2 text-sm text-muted"
+            className="btn btn-secondary text-sm"
           >
             退出登录
           </button>
         )}
       </div>
       <div className="mt-6 flex gap-2">
-        <button onClick={() => setTab("works")} className={`px-3 py-1.5 text-sm ${tab === "works" ? "bg-red" : "border border-line text-muted"}`}>
+        <button onClick={() => setTab("works")} className={`chip ${tab === "works" ? "chip-on" : ""}`}>
           作品 {posts.length}
         </button>
         {(mine || favorites.length > 0) && (
-          <button onClick={() => setTab("favs")} className={`px-3 py-1.5 text-sm ${tab === "favs" ? "bg-red" : "border border-line text-muted"}`}>
+          <button onClick={() => setTab("favs")} className={`chip ${tab === "favs" ? "chip-on" : ""}`}>
             收藏 {favorites.length}
           </button>
         )}

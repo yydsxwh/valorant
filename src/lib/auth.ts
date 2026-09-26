@@ -5,7 +5,7 @@ import type { PublicUser } from "./types";
 
 export { hashPassword, verifyPassword } from "./password";
 
-const SESSION_COOKIE = "valspot_session";
+const SESSION_COOKIE = "shundong_session";
 const SECRET = process.env.VALSPOT_SECRET || "valspot-dev-secret-change-me";
 
 function sign(payload: string) {

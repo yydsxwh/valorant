@@ -9,6 +9,7 @@ import { Avatar } from "./Avatar";
 
 const NAV = [
   { href: "/", label: "首页" },
+  { href: "/products", label: "产品" },
   { href: "/library", label: "点位库" },
   { href: "/maps", label: "地图" },
   { href: "/community", label: "社区" },
@@ -22,54 +23,52 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-[#07090d]/80 backdrop-blur-xl">
+    <header className="glass-bar sticky top-0 z-40 border-b">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="relative flex h-8 w-8 items-center justify-center bg-red clip-btn">
-            <span className="text-sm font-black tracking-tight">瞬</span>
+        <Link href="/" className="flex shrink-0 items-center gap-2">
+          <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-black text-white">
+            瞬
           </span>
           <span className="leading-none">
-            <strong className="block text-[15px] tracking-[0.18em]">瞬点</strong>
-            <small className="text-[10px] text-faint tracking-[0.22em]">SHUNSPOT</small>
+            <strong className="brand-mark block text-[15px]" style={{ fontSize: "var(--fs-brand)" }}>
+              瞬懂
+            </strong>
+            <small className="text-[11px] text-muted">点位社区</small>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex" style={{ fontSize: "var(--fs-nav)" }}>
           {NAV.map((item) => {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-1.5 text-sm ${active ? "text-ink" : "text-muted hover:text-ink"}`}
+                className={`rounded-full px-3 py-1.5 ${active ? "bg-brand-soft text-brand-strong" : "text-muted hover:text-ink"}`}
               >
                 {item.label}
-                {active && <i className="mt-1 block h-0.5 w-full bg-red" />}
               </Link>
             );
           })}
         </nav>
 
         <form
-          className="ml-auto hidden min-w-0 flex-1 max-w-sm items-center gap-2 rounded-full border border-line bg-elev px-3 py-1.5 md:flex"
+          className="ml-auto hidden min-w-0 max-w-sm flex-1 items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 md:flex"
           onSubmit={(e) => {
             e.preventDefault();
             router.push(`/search?q=${encodeURIComponent(q.trim())}`);
           }}
         >
-          <Search className="h-4 w-4 text-faint" />
+          <Search className="h-4 w-4 text-muted" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="搜点位、地图、英雄、作者…"
-            className="w-full bg-transparent text-sm outline-none placeholder:text-faint"
+            className="w-full bg-transparent text-sm outline-none placeholder:text-muted"
           />
         </form>
 
-        <Link
-          href="/submit"
-          className="hidden items-center gap-1.5 bg-red px-3 py-2 text-sm font-medium text-white clip-btn md:inline-flex"
-        >
+        <Link href="/submit" className="btn btn-primary hidden !min-h-10 !px-4 text-sm md:inline-flex">
           <Upload className="h-4 w-4" />
           投稿
         </Link>
@@ -91,16 +90,16 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-line bg-bg px-4 py-3 md:hidden">
+        <div className="border-t border-line px-4 py-3 md:hidden">
           <form
-            className="mb-3 flex items-center gap-2 rounded-full border border-line bg-elev px-3 py-2"
+            className="mb-3 flex items-center gap-2 rounded-full border border-line bg-card px-3 py-2"
             onSubmit={(e) => {
               e.preventDefault();
               setOpen(false);
               router.push(`/search?q=${encodeURIComponent(q.trim())}`);
             }}
           >
-            <Search className="h-4 w-4 text-faint" />
+            <Search className="h-4 w-4 text-muted" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
@@ -110,7 +109,7 @@ export function Header() {
           </form>
           <div className="grid gap-1">
             {[...NAV, { href: "/submit", label: "投稿" }, { href: user ? "/me" : "/login", label: user ? "我的主页" : "登录 / 注册" }].map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-lg px-2 py-2 text-sm hover:bg-elev">
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-2 py-2 text-sm hover:bg-brand-soft">
                 {item.label}
               </Link>
             ))}
