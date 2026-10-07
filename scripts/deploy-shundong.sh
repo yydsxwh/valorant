@@ -3,7 +3,11 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 KEY="${DEPLOY_SSH_KEY_FILE:-$HOME/.ssh/yyds_aliyun}"
-HOST="${DEPLOY_SSH_HOST:-admin@47.242.157.181}"
+HOST="${DEPLOY_SSH_HOST:-${DEPLOY_HOST:-}}"
+if [[ -z "$HOST" ]]; then
+  echo "缺少 DEPLOY_SSH_HOST 或 DEPLOY_HOST，例如 admin@your-server" >&2
+  exit 1
+fi
 DEST="${DEPLOY_REMOTE_DIR:-/var/www/yyds-course-platform/public/products/shundong}"
 
 if [[ ! -f "$KEY" ]]; then
