@@ -66,9 +66,60 @@
     return data && data.vars && data.vars["--brand"] ? data : null;
   }
 
+  function fromPublic(data) {
+    var colors = data && data.colors;
+    if (!colors || !colors.brand) return null;
+    var font = data.font || {};
+    return {
+      vars: {
+        "--bg": colors.bg,
+        "--bg-deep": colors.bgDeep,
+        "--ink": colors.ink,
+        "--muted": colors.muted,
+        "--line": colors.line,
+        "--brand": colors.brand,
+        "--brand-strong": colors.brandStrong,
+        "--brand-soft": colors.brandSoft,
+        "--fire": colors.fire,
+        "--fire-strong": colors.fireStrong,
+        "--fire-soft": colors.fireSoft,
+        "--accent": colors.fire,
+        "--accent-soft": colors.fireSoft,
+        "--card": colors.card,
+        "--shadow": colors.shadow,
+        "--site-bg-layers": (data.background && data.background.layers) || colors.bg,
+        "--surface-radius": (data.radiusPx || 16) + "px",
+        "--surface-pad": data.surfacePad || "1.5rem",
+        "--font-body": font.family || FALLBACK["--font-body"],
+      },
+      fx: "",
+      packName: data.paletteId || "主站装扮",
+    };
+  }
+
   async function boot() {
-    apply(FALLBACK);
-    var sources = ["/api/public/theme", "https://www.yydsxwh.com/api/public/theme"];
+    var cacheKey = "kemiao-shundong-theme";
+    try {
+      var cached = JSON.parse(localStorage.getItem(cacheKey) || "null");
+      if (cached && cached.vars) {
+        apply(cached.vars, cached.fx, cached.packName);
+        if (cached.storedAt && Date.now() - cached.storedAt < 60000) return;
+      } else {
+        apply(FALLBACK);
+      }
+    } catch (error) {
+      apply(FALLBACK);
+    }
+    try {
+      var current = await loadJson("/api/theme/public");
+      var mapped = fromPublic(current);
+      if (mapped) {
+        apply(mapped.vars, mapped.fx, mapped.packName);
+        localStorage.setItem(cacheKey, JSON.stringify({ vars: mapped.vars, fx: mapped.fx, packName: mapped.packName, storedAt: Date.now() }));
+        return;
+      }
+    } catch (error) {}
+    var sources = ["/api/public/theme"];
     for (var i = 0; i < sources.length; i++) {
       try {
         var snap = await loadJson(sources[i]);
@@ -78,7 +129,7 @@
         }
       } catch (e) {}
     }
-    var pages = ["/", "https://www.yydsxwh.com/", "https://www.yydsxwh.com/products"];
+    var pages = ["/", "https://www.kemiao.net/", "https://www.kemiao.net/products"];
     for (var j = 0; j < pages.length; j++) {
       try {
         var res = await fetch(pages[j], { cache: "no-store" });
