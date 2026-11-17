@@ -63,7 +63,7 @@
     var res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return null;
     var data = await res.json();
-    return data && data.vars && data.vars["--brand"] ? data : null;
+    return data && typeof data === "object" ? data : null;
   }
 
   function fromPublic(data) {
@@ -115,7 +115,9 @@
       var mapped = fromPublic(current);
       if (mapped) {
         apply(mapped.vars, mapped.fx, mapped.packName);
-        localStorage.setItem(cacheKey, JSON.stringify({ vars: mapped.vars, fx: mapped.fx, packName: mapped.packName, storedAt: Date.now() }));
+        try {
+          localStorage.setItem(cacheKey, JSON.stringify({ vars: mapped.vars, fx: mapped.fx, packName: mapped.packName, storedAt: Date.now() }));
+        } catch (error) {}
         return;
       }
     } catch (error) {}
@@ -123,7 +125,7 @@
     for (var i = 0; i < sources.length; i++) {
       try {
         var snap = await loadJson(sources[i]);
-        if (snap) {
+        if (snap && snap.vars && snap.vars["--brand"]) {
           apply(snap.vars, snap.fx, snap.packName || "主站装扮");
           return;
         }
